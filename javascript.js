@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-    console.log("ready");
     $("#wholeScreen").hide();
     $("#peopleLeftId").hide();
     $("#currentKills").hide();
@@ -56,7 +55,6 @@ $(document).ready(function(){
 }
 
     getUserIP(function(ip){
-		console.log(ip);
         $("#all").hide();
         $("#newUserDiv").hide();
         var userIPGet = localStorage.getItem(ip);
@@ -71,7 +69,6 @@ $(document).ready(function(){
             getUserSkin();
             $("#submitUsername").click(function(){
                username = $("#username").val();
-               console.log(username);
                gameObjects = JSON.parse(localStorage.getItem(ip));
                gameObjects[0] = username;
                localStorage.setItem(ip, JSON.stringify(gameObjects));
@@ -117,7 +114,6 @@ $(document).ready(function(){
     });
     
     function landingSpotGenerator(){
-        console.log("simulating landing spot");
         var landingSpotNumber = Math.floor(Math.random() * 19) + 0
         landingSpot = landingSpotNames[landingSpotNumber];
         $("#simulateUpdate").append("<div><p1 style='color:white;'>Landing at " + landingSpot + "...</p1></div>")
@@ -150,7 +146,6 @@ $(document).ready(function(){
       function randomizeKills(){
           peopleLeft -= 5;
           seconds -= 0.5;
-          console.log(seconds);
           $("#peopleLeftId").html("People Left: " + peopleLeft);
           var killNumber = Math.floor(Math.random() * 3) + 0;
           
@@ -170,7 +165,6 @@ $(document).ready(function(){
           };
           if(seconds == 0){
               $("#startGame").show();
-              console.log("game over");
               clearInterval(killRandomizer);
               if(secondsConst == 10){
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
@@ -381,24 +375,19 @@ $(document).ready(function(){
     
     function determineSeconds(){
       getUserIP(function(ip){
-          console.log("jjj");
           gameObjects = JSON.parse(localStorage.getItem(ip));
           if (gameObjects[2] == "defaultSkin"){
               seconds = Math.floor(Math.random() * 10) + 1;
               secondsConst = seconds;
-              console.log(secondsConst);
           } else if (gameObjects[2] == "whiplash"){
               seconds = Math.floor(Math.random() * 10) + 3;
               secondsConst = seconds;
-              console.log(secondsConst);
           } else if (gameObjects[2] == "briteBomber"){
               seconds = Math.floor(Math.random() * 10) + 5;
               secondsConst = seconds;
-              console.log(secondsConst);
           } else if (gameObjects[2] == "skullTrooper"){
               seconds = Math.floor(Math.random() * 10) + 7;
               secondsConst = seconds;
-              console.log(secondsConst);
           } else if (gameObjects[2] == "blackKnight"){
               seconds = Math.floor(Math.random() * 10) + 9;
               secondsConst = seconds;
