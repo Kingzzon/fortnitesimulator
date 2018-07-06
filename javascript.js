@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $("#wholeScreen").hide();
     $("#peopleLeftId").hide();
@@ -141,12 +140,13 @@ $(document).ready(function(){
     };
 
     function simulateGame(){
-      determineSeconds();
+      getUserIP(function(ip){
+      seconds = Math.floor(Math.random() * 10) + 1;
+      secondsConst = seconds;
       var killRandomizer = setInterval(randomizeKills, 1000);
       function randomizeKills(){
           peopleLeft -= 5;
           seconds -= 0.5;
-	  console.log(seconds);
           $("#peopleLeftId").html("People Left: " + peopleLeft);
           var killNumber = Math.floor(Math.random() * 3) + 0;
           
@@ -161,13 +161,39 @@ $(document).ready(function(){
             $("#currentKills").html("Kills: " + currentKills);
             randomNamesArray.splice(randomNamesArrayNumber, 1);
           };
-          if(secondsConst == 10 && seconds == 0.5){
-            $("#peopleLeftId").html("People Left: 2");
-          };
+ 
           if(seconds == 0){
               $("#startGame").show();
               clearInterval(killRandomizer);
-              if(secondsConst == 10){
+              gameObjects = JSON.parse(localStorage.getItem(ip));
+            if(gameObjects[2] == "defaultSkin"){
+               if(secondsConst == 10 && seconds == 0.5){
+                $("#peopleLeftId").html("People Left: 2");
+              };
+               if(secondsConst == 10){
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#peopleLeftId").html("People Left: 1");
+                  gameWon(10);
+              }
+               else{
+                  waysToDieNumber = Math.floor(Math.random() * 9) + 0;
+                  randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
+                  killedUsingNumber = Math.floor(Math.random() * 3) + 0;
+                  killedUsing = killedUsingArray[killedUsingNumber];
+                  randomName = randomNamesArray[randomNamesArrayNumber];
+                  $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
+                  randomNamesArray.splice(randomNamesArrayNumber, 1);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
+                  gameWon(2);
+              };
+            };
+          
+             if (gameObjects[2] == "whiplash"){
+              if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5){
+                $("#peopleLeftId").html("People Left: 2");
+              };
+              if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8){
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
@@ -184,11 +210,79 @@ $(document).ready(function(){
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
                   gameWon(2);
               };
+          };
+              
+          if (gameObjects[2] == "briteBomber"){
+              if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5 || secondsConst == 7 && seconds == 0.5 || secondsConst == 6 && seconds == 0.5){
+                $("#peopleLeftId").html("People Left: 2");
+              };
+              if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6){
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#peopleLeftId").html("People Left: 1");
+                  gameWon(10);
+              }
+              else{
+                  waysToDieNumber = Math.floor(Math.random() * 9) + 0;
+                  randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
+                  killedUsingNumber = Math.floor(Math.random() * 3) + 0;
+                  killedUsing = killedUsingArray[killedUsingNumber];
+                  randomName = randomNamesArray[randomNamesArrayNumber];
+                  $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
+                  randomNamesArray.splice(randomNamesArrayNumber, 1);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
+                  gameWon(2);
+              };
+          };
+              
+          if (gameObjects[2] == "skullTrooper"){
+              if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5 || secondsConst == 7 && seconds == 0.5 || secondsConst == 6 && seconds == 0.5 || secondsConst == 5 && seconds == 0.5 || secondsConst == 4 && seconds == 0.5){
+                $("#peopleLeftId").html("People Left: 2");
+              };
+              if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6 || secondsConst == 5 || secondsConst == 4){
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#peopleLeftId").html("People Left: 1");
+                  gameWon(10);
+              }
+              else{
+                  waysToDieNumber = Math.floor(Math.random() * 9) + 0;
+                  randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
+                  killedUsingNumber = Math.floor(Math.random() * 3) + 0;
+                  killedUsing = killedUsingArray[killedUsingNumber];
+                  randomName = randomNamesArray[randomNamesArrayNumber];
+                  $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
+                  randomNamesArray.splice(randomNamesArrayNumber, 1);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
+                  gameWon(2);
+              };
+          };    
+           
+          if (gameObjects[2] == "blackKnight"){
+              if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5 || secondsConst == 7 && seconds == 0.5 || secondsConst == 6 && seconds == 0.5 || secondsConst == 5 && seconds == 0.5 || secondsConst == 4 && seconds == 0.5 || secondsConst == 3 && seconds == 0.5 || secondsConst == 2 && seconds == 0.5){
+                $("#peopleLeftId").html("People Left: 2");
+              };
+              if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6 || secondsConst == 5 || secondsConst == 4 || secondsConst == 3 || secondsConst == 2){
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#peopleLeftId").html("People Left: 1");
+                  gameWon(10);
+              }
+              else{
+                  waysToDieNumber = Math.floor(Math.random() * 9) + 0;
+                  randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
+                  killedUsingNumber = Math.floor(Math.random() * 3) + 0;
+                  killedUsing = killedUsingArray[killedUsingNumber];
+                  randomName = randomNamesArray[randomNamesArrayNumber];
+                  $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
+                  randomNamesArray.splice(randomNamesArrayNumber, 1);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
+                  gameWon(2);
+              };
+          };    
       };
     };
-        
-    
-    
+      });
 };
     
     getUserSkin();
@@ -232,7 +326,7 @@ $(document).ready(function(){
         determineSkin();
     };
     
-    function buyWhiplashSkin(){
+    function buyWhiplashSkinSkin(){
         getUserIP(function(ip){
            gameObjects = JSON.parse(localStorage.getItem(ip));
           if (vbucksTotal >= 100){
@@ -249,7 +343,7 @@ $(document).ready(function(){
         });
     };
     
-    function buyBriteBomberSkin(){
+    function buyBriteBomberSkinSkin(){
         getUserIP(function(ip){
            gameObjects = JSON.parse(localStorage.getItem(ip));
           if (vbucksTotal >= 200){
@@ -266,7 +360,7 @@ $(document).ready(function(){
         });
     };
     
-    function buySkullTrooperSkin(){
+    function buySkullTrooperSkinSkin(){
         getUserIP(function(ip){
            gameObjects = JSON.parse(localStorage.getItem(ip));
           if (vbucksTotal >= 500){
@@ -283,7 +377,7 @@ $(document).ready(function(){
         });
     };
     
-    function buyBlackKnightSkin(){
+    function buyBlackKnightSkinSkin(){
         getUserIP(function(ip){
            gameObjects = JSON.parse(localStorage.getItem(ip));
           if (vbucksTotal >= 1000){
@@ -372,29 +466,6 @@ $(document).ready(function(){
          };
           
       });
-    };
-    
-    function determineSeconds(){
-      getUserIP(function(ip){
-          gameObjects = JSON.parse(localStorage.getItem(ip));
-          if (gameObjects[2] == "defaultSkin"){
-              seconds = Math.floor(Math.random() * 10) + 1;
-              secondsConst = seconds;
-          } else if (gameObjects[2] == "whiplash"){
-              seconds = Math.floor(Math.random() * 10) + 3;
-              secondsConst = seconds;
-	      console.log("whiplash");
-          } else if (gameObjects[2] == "briteBomber"){
-              seconds = Math.floor(Math.random() * 10) + 5;
-              secondsConst = seconds;
-          } else if (gameObjects[2] == "skullTrooper"){
-              seconds = Math.floor(Math.random() * 10) + 7;
-              secondsConst = seconds;
-          } else if (gameObjects[2] == "blackKnight"){
-              seconds = Math.floor(Math.random() * 10) + 9;
-              secondsConst = seconds;
-          } 
-      });  
     };
     
 });
