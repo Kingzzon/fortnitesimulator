@@ -382,6 +382,7 @@ $(document).ready(function(){
           } else if (gameObjects[2] == "whiplash"){
               seconds = Math.floor(Math.random() * 10) + 3;
               secondsConst = seconds;
+	      console.log("whiplash");
           } else if (gameObjects[2] == "briteBomber"){
               seconds = Math.floor(Math.random() * 10) + 5;
               secondsConst = seconds;
