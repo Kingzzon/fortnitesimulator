@@ -75,7 +75,7 @@ $(document).ready(function(){
                gameObjects = JSON.parse(localStorage.getItem(ip));
                gameObjects[0] = username;
                localStorage.setItem(ip, JSON.stringify(gameObjects));
-               checkUser();
+               newUserConfirmed();
            });
         } else{
             $("#newUserDiv").hide();
@@ -93,6 +93,20 @@ $(document).ready(function(){
         checkUser();
     });
 
+    function newUserConfirmed(){
+        getUserIP(function(ip){
+	    $("#newUserDiv").hide();
+            gameObjects = JSON.parse(localStorage.getItem(ip));
+            vbucksTotal = gameObjects[1];
+            $("#usernameDisplay").html(gameObjects[0]);
+            $("#vbucksTotal").html(vbucksTotal);
+            determineSkin();
+            getUserSkin();
+            $("#all").show();
+            username = gameObjects[0];
+	})
+    };
+	
     $("#startGame").click(function(){
         restartGame();
         $("#startGame").hide();
