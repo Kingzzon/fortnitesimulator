@@ -146,6 +146,7 @@ $(document).ready(function(){
       function randomizeKills(){
           peopleLeft -= 5;
           seconds -= 0.5;
+	  console.log(seconds);
           $("#peopleLeftId").html("People Left: " + peopleLeft);
           var killNumber = Math.floor(Math.random() * 3) + 0;
           
