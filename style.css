@@ -1,0 +1,163 @@
+.simulatorTab {
+    float: right;
+    height: 100%;
+    width: 20%;
+    background-color: #6E6E6E;
+}
+
+#simulatingInformation {
+    height: 50px;
+    width: 100%;
+    float: right;
+    background-color: #424242;
+}
+
+#peopleLeftId{
+    color: white;
+}
+
+#main{
+    text-align: center;
+    width: 60%;
+    margin-left: 95px;
+    margin: auto;
+
+}
+
+#list{
+    float: left;
+    width: 20%;
+    height: 100%;
+    background-color: #111111;
+}
+
+.startGame{
+    margin-top: 100px;
+    display: inline-block;
+}
+
+#currentKills{
+    color: white;
+}
+
+#vbucksTotal {
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+#vbucksemoticon {
+    height: 50px;
+    width: 50px;
+    float: left;
+}
+
+#username{
+
+}
+
+#skinImage {
+    height: 450px;
+    width: 450px;
+    display: block;
+    margin: 0 auto;
+}
+
+#usernameDisplayCSS {
+    display: inline-block;
+}
+
+#center {
+    margin: auto;
+    width: 50%;
+
+}
+
+.buyOrEquip {
+    float: right;
+    height: 50px;
+    width: 20%;
+}
+
+.skinIconCommon {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: gray;
+    margin-top: -50px;
+}
+
+.skinIconUncommon {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: limegreen;
+    margin-top: -50px;
+}
+
+.skinIconRare {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: dodgerblue;
+    margin-top: -50px;
+}
+
+.skinIconEpic {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: rebeccapurple;
+    margin-top: -50px;
+}
+
+.skinIconLegendary {
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: gold;
+    margin-top: -50px;
+}
+
+.skinName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.skinDiv {
+    width: 100%;
+    height: 75px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.skinNameDiv {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skinInformation {
+    color: white;
+    text-align: center;
+    width: 30%;
+}
+
+.skinDiv2 {
+    height: 50px;
+    width: 60%;
+    margin-left: 20%;
+}
+
+#newUserDiv {
+    margin: auto;
+    width: 50%;
+    border: 3px solid blue;
+    padding: 10px;
+    margin-top: 400px;
+}
+
