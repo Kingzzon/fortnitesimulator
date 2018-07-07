@@ -9,7 +9,9 @@ $(document).ready(function(){
     $("#desktopChromeAlert").hide();
     
     function desktopChromeAlert(){
+	$("#definitelyAll").hide();
         $("#desktopChromeAlert").show();
+	console.log("chrome only");
     };
     
 
