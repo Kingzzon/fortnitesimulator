@@ -1,4 +1,28 @@
 $(document).ready(function(){
+    var isChromium = window.chrome;
+    var winNav = window.navigator;
+    var vendorName = winNav.vendor;
+    var isOpera = typeof window.opr !== "undefined";
+    var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
+    var isIOSChrome = winNav.userAgent.match("CriOS");
+    
+    $("#desktopChromeAlert").hide();
+    
+    function desktopChromeAlert(){
+        $("#desktopChromeAlert").show();
+    };
+    
+
+  if (isIOSChrome) {
+   desktopChromeAlert();
+} else if(
+  isChromium !== null &&
+  typeof isChromium !== "undefined" &&
+  vendorName === "Google Inc." &&
+  isOpera === false &&
+  isIEedge === false
+) {
+   console.log("ready");
     $("#wholeScreen").hide();
     $("#peopleLeftId").hide();
     $("#currentKills").hide();
@@ -54,6 +78,7 @@ $(document).ready(function(){
 }
 
     getUserIP(function(ip){
+		console.log(ip);
         $("#all").hide();
         $("#newUserDiv").hide();
         var userIPGet = localStorage.getItem(ip);
@@ -68,6 +93,7 @@ $(document).ready(function(){
             getUserSkin();
             $("#submitUsername").click(function(){
                username = $("#username").val();
+               console.log(username);
                gameObjects = JSON.parse(localStorage.getItem(ip));
                gameObjects[0] = username;
                localStorage.setItem(ip, JSON.stringify(gameObjects));
@@ -113,6 +139,7 @@ $(document).ready(function(){
     });
     
     function landingSpotGenerator(){
+        console.log("simulating landing spot");
         var landingSpotNumber = Math.floor(Math.random() * 19) + 0
         landingSpot = landingSpotNames[landingSpotNumber];
         $("#simulateUpdate").append("<div><p1 style='color:white;'>Landing at " + landingSpot + "...</p1></div>")
@@ -147,6 +174,7 @@ $(document).ready(function(){
       function randomizeKills(){
           peopleLeft -= 5;
           seconds -= 0.5;
+          console.log(seconds);
           $("#peopleLeftId").html("People Left: " + peopleLeft);
           var killNumber = Math.floor(Math.random() * 3) + 0;
           
@@ -164,9 +192,11 @@ $(document).ready(function(){
  
           if(seconds == 0){
               $("#startGame").show();
+              console.log("game over");
               clearInterval(killRandomizer);
               gameObjects = JSON.parse(localStorage.getItem(ip));
             if(gameObjects[2] == "defaultSkin"){
+                console.log("default");
                if(secondsConst == 10 && seconds == 0.5){
                 $("#peopleLeftId").html("People Left: 2");
               };
@@ -197,7 +227,7 @@ $(document).ready(function(){
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
-                  gameWon(10);
+                  gameWon(15);
               }
               else{
                   waysToDieNumber = Math.floor(Math.random() * 9) + 0;
@@ -259,6 +289,8 @@ $(document).ready(function(){
           };    
            
           if (gameObjects[2] == "blackKnight"){
+              console.log("blackknight");
+              console.log(secondsConst);
               if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5 || secondsConst == 7 && seconds == 0.5 || secondsConst == 6 && seconds == 0.5 || secondsConst == 5 && seconds == 0.5 || secondsConst == 4 && seconds == 0.5 || secondsConst == 3 && seconds == 0.5 || secondsConst == 2 && seconds == 0.5){
                 $("#peopleLeftId").html("People Left: 2");
               };
@@ -467,5 +499,12 @@ $(document).ready(function(){
           
       });
     };
+    
+    
+    
+} else { 
+   desktopChromeAlert();
+}
+    
     
 });
