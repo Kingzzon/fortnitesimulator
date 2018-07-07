@@ -161,3 +161,12 @@
     margin-top: 400px;
 }
 
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid blue;
+    padding: 10px;
+    margin-top: 400px;
+}
+
+
