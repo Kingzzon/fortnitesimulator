@@ -481,7 +481,7 @@ $(document).ready(function(){
               } else if (n == true){
                   equipSkin("whiplash");
               } else{
-                  buyWhiplashSkin();
+                  buyWhiplashSkinSkin();
               };
   });
     
