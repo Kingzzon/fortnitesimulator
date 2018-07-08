@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
     var isChromium = window.chrome;
     var winNav = window.navigator;
@@ -22,6 +24,7 @@ $(document).ready(function(){
   isOpera === false &&
   isIEedge === false
 ) {
+   console.log("ready");
     $("#wholeScreen").hide();
     $("#peopleLeftId").hide();
     $("#currentKills").hide();
@@ -77,6 +80,7 @@ $(document).ready(function(){
 }
 
     getUserIP(function(ip){
+		console.log(ip);
         $("#all").hide();
         $("#newUserDiv").hide();
         var userIPGet = localStorage.getItem(ip);
@@ -91,6 +95,7 @@ $(document).ready(function(){
             getUserSkin();
             $("#submitUsername").click(function(){
                username = $("#username").val();
+               console.log(username);
                gameObjects = JSON.parse(localStorage.getItem(ip));
                gameObjects[0] = username;
                localStorage.setItem(ip, JSON.stringify(gameObjects));
@@ -136,6 +141,7 @@ $(document).ready(function(){
     });
     
     function landingSpotGenerator(){
+        console.log("simulating landing spot");
         var landingSpotNumber = Math.floor(Math.random() * 19) + 0
         landingSpot = landingSpotNames[landingSpotNumber];
         $("#simulateUpdate").append("<div><p1 style='color:white;'>Landing at " + landingSpot + "...</p1></div>")
@@ -170,6 +176,7 @@ $(document).ready(function(){
       function randomizeKills(){
           peopleLeft -= 5;
           seconds -= 0.5;
+          console.log(seconds);
           $("#peopleLeftId").html("People Left: " + peopleLeft);
           var killNumber = Math.floor(Math.random() * 3) + 0;
           
@@ -187,9 +194,11 @@ $(document).ready(function(){
  
           if(seconds == 0){
               $("#startGame").show();
+              console.log("game over");
               clearInterval(killRandomizer);
               gameObjects = JSON.parse(localStorage.getItem(ip));
             if(gameObjects[2] == "defaultSkin"){
+                console.log("default");
                if(secondsConst == 10 && seconds == 0.5){
                 $("#peopleLeftId").html("People Left: 2");
               };
@@ -224,12 +233,17 @@ $(document).ready(function(){
                 $("#peopleLeftId").html("People Left: 2");
               };
               if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8){
+                  var vbucksIncome = currentKills * 2 + 2 + 10;
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game won: +10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
-                  gameWon(15);
+                  gameWon(vbucksIncome);
               }
               else{
+                  var vbucksIncome = currentKills * 2 + 2;
                   waysToDieNumber = Math.floor(Math.random() * 9) + 0;
                   randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
                   killedUsingNumber = Math.floor(Math.random() * 3) + 0;
@@ -237,8 +251,10 @@ $(document).ready(function(){
                   randomName = randomNamesArray[randomNamesArrayNumber];
                   $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
                   randomNamesArray.splice(randomNamesArrayNumber, 1);
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
-                  gameWon(2);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
+                  gameWon(vbucksIncome);
               };
           };
               
@@ -247,12 +263,17 @@ $(document).ready(function(){
                 $("#peopleLeftId").html("People Left: 2");
               };
               if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6){
+                  var vbucksIncome = currentKills * 2 + 2 + 10;
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game won: +10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
-                  gameWon(10);
+                  gameWon(vbucksIncome);
               }
               else{
+                  var vbucksIncome = currentKills * 2 + 2;
                   waysToDieNumber = Math.floor(Math.random() * 9) + 0;
                   randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
                   killedUsingNumber = Math.floor(Math.random() * 3) + 0;
@@ -260,8 +281,10 @@ $(document).ready(function(){
                   randomName = randomNamesArray[randomNamesArrayNumber];
                   $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
                   randomNamesArray.splice(randomNamesArrayNumber, 1);
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
-                  gameWon(2);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
+                  gameWon(vbucksIncome);
               };
           };
               
@@ -270,12 +293,17 @@ $(document).ready(function(){
                 $("#peopleLeftId").html("People Left: 2");
               };
               if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6 || secondsConst == 5 || secondsConst == 4){
+                  var vbucksIncome = currentKills * 2 + 2 + 10;
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game won: +10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
-                  gameWon(10);
+                  gameWon(vbucksIncome);
               }
               else{
+                  var vbucksIncome = currentKills * 2 + 2;
                   waysToDieNumber = Math.floor(Math.random() * 9) + 0;
                   randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
                   killedUsingNumber = Math.floor(Math.random() * 3) + 0;
@@ -283,22 +311,31 @@ $(document).ready(function(){
                   randomName = randomNamesArray[randomNamesArrayNumber];
                   $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
                   randomNamesArray.splice(randomNamesArrayNumber, 1);
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
-                  gameWon(2);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
+                  gameWon(vbucksIncome);
               };
           };    
            
           if (gameObjects[2] == "blackKnight"){
+              console.log("blackknight");
+              console.log(secondsConst);
               if(secondsConst == 10 && seconds == 0.5 || secondsConst == 9 && seconds == 0.5 || secondsConst == 8 && seconds == 0.5 || secondsConst == 7 && seconds == 0.5 || secondsConst == 6 && seconds == 0.5 || secondsConst == 5 && seconds == 0.5 || secondsConst == 4 && seconds == 0.5 || secondsConst == 3 && seconds == 0.5 || secondsConst == 2 && seconds == 0.5){
                 $("#peopleLeftId").html("People Left: 2");
               };
               if(secondsConst == 10 || secondsConst == 9 || secondsConst == 8 || secondsConst == 7 || secondsConst == 6 || secondsConst == 5 || secondsConst == 4 || secondsConst == 3 || secondsConst == 2){
+                  var vbucksIncome = currentKills * 2 + 2 + 10;
                   $("#simulateUpdate").append("<div><p1 style='color:white;'>Victory Royale!</p1></div>")
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game won: +10 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
                   $("#peopleLeftId").html("People Left: 1");
-                  gameWon(10);
+                  gameWon(vbucksIncome);
               }
               else{
+                  var vbucksIncome = currentKills * 2 + 2;
                   waysToDieNumber = Math.floor(Math.random() * 9) + 0;
                   randomNamesArrayNumber = Math.floor(Math.random() * 49) + 0;
                   killedUsingNumber = Math.floor(Math.random() * 3) + 0;
@@ -306,8 +343,10 @@ $(document).ready(function(){
                   randomName = randomNamesArray[randomNamesArrayNumber];
                   $("#simulateUpdate").append("<div><p1 style='color:lawngreen;'>" + username + "</p1><p1 style='color:white;'> was killed by </p1><p1 style='color:firebrick;'>" + randomName + "</p1><p1 style='color:white;'> " + killedUsing + "</div>")
                   randomNamesArray.splice(randomNamesArrayNumber, 1);
-                  $("#simulateUpdate").append("<div><p1 style='color:white;'>+2 V-Bucks</p1></div>")
-                  gameWon(2);
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Game completed: +2 V-Bucks</p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>" + currentKills + " Kills: +" + currentKills * 2 + " V-Bucks </p1></div>")
+                  $("#simulateUpdate").append("<div><p1 style='color:white;'>Total: +" + vbucksIncome + " V-Bucks</p1></div>")
+                  gameWon(vbucksIncome);
               };
           };    
       };
