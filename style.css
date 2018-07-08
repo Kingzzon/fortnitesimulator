@@ -169,4 +169,8 @@
     margin-top: 400px;
 }
 
-
+#version {
+    float: right;
+    margin-right: 15px;
+    margin-top: 15px;
+}
